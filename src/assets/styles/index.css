@@ -1,0 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
+a,
+a:active,
+a:visited {
+  color: inherit;
+}
