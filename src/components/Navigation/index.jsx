@@ -5,7 +5,7 @@ import { ROUTES } from '../../constants'
 
 const Navigation = () => {
   return (
-    <nav className="nav">
+    <nav>
       <span>Navigation: </span>
       {ROUTES.map(
         ({ path, name, navigation }) =>
