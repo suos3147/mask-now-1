@@ -8,3 +8,4 @@ export default {
 }
 
 export const Default = () => <Footer></Footer>
+export const color = () => <Footer color="primary"></Footer>
