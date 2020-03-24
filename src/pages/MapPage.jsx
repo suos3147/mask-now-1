@@ -4,35 +4,82 @@ import { useRef, useEffect, useState } from 'react'
 // Component to HTML String
 import { renderToString } from 'react-dom/server'
 import axios from 'axios'
+import Overlay from '../components/Overlay'
 
 const MapPage = () => {
   const [mask, setMask] = useState([])
-  const [page, setPage] = useState(1)
   const mapRef = useRef()
   const { kakao } = window
+  let center = []
+  let positions = []
 
-  const getMask = async page => {
-    const res = await axios
-      .get(`https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/stores/json?page=${page}`)
+  useEffect(() => {
+    getMask()
+  }, [])
+
+  useEffect(() => {}, [])
+
+  // 맵 center 가져오기, Geolocation API(chrome localhost, https만 가능)
+  const getCenter = () => {
+    if (navigator.geolocation) {
+      // GPS를 지원하면
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          sessionStorage.setItem('lat', position.coords.latitude)
+          sessionStorage.setItem('long', position.coords.longitude)
+        },
+        function(error) {
+          console.error(error)
+        },
+        {
+          enableHighAccuracy: false,
+          maximumAge: 0,
+          timeout: Infinity,
+        },
+      )
+    } else {
+      alert('GPS를 지원하지 않습니다')
+      console.log('Geolocation API does not work')
+    }
+  }
+
+  // center 변수 설정 함수
+  const setCenter = () => {
+    center = [Number(sessionStorage.getItem('lat')), Number(sessionStorage.getItem('long'))]
+  }
+
+  const getMask = async () => {
+    const res = await axios({
+      method: 'GET',
+      url: `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${center[0]}&lng=${center[1]}&m=500`,
+    })
       .then(data => data)
       .catch(err => {
         throw err
       })
-    const {
-      data: { storeInfos },
-    } = res
 
+    // 약국 정보 추출
     const {
-      data: { totalPages },
+      data: { stores },
     } = res
+    console.log(stores)
 
-    setMask(mask.concat(storeInfos))
-    setPage(page < totalPages && page + 1)
+    setMask(prevMask => {
+      if (prevMask !== stores) {
+        return prevMask.concat(stores)
+      }
+    })
+
+    positions = stores.map(store => ({
+      content: renderToString(
+        <Overlay name={store.name} addr={store.addr} remain_stat={store.remain_stat} />,
+      ),
+      latlng: new kakao.maps.LatLng(store.lat, store.lng),
+    }))
+    console.log(positions)
+
+    createMap()
   }
-
-  useEffect(() => {
-    getMask(page)
-  }, [page])
 
   console.log(mask)
 
@@ -42,7 +89,7 @@ const MapPage = () => {
 
     const options = {
       //지도를 생성할 때 필요한 기본 옵션
-      center: new kakao.maps.LatLng(37.572507, 126.997299), //지도의 중심좌표.
+      center: new kakao.maps.LatLng(center[0], center[1]), //지도의 중심좌표.
       level: 3, //지도의 레벨(확대, 축소 정도)
     }
     //지도 생성 및 객체 리턴
@@ -57,33 +104,7 @@ const MapPage = () => {
     map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT)
 
     //  마커 위치 객체 배열
-    let positions = []
-    if (mask) {
-      positions = mask.map(store => ({
-        content: `${store.addr}\n${store.type}`,
-        latlng: new kakao.maps.LatLng(store.lat, store.lng),
-      }))
-    }
-
     console.log(positions)
-    // [
-    //   {
-    //     content: '<div>카카오</div>',
-    //     latlng: new kakao.maps.LatLng(33.450705, 126.570677),
-    //   },
-    //   {
-    //     content: '<div>생태연못</div>',
-    //     latlng: new kakao.maps.LatLng(33.450936, 126.569477),
-    //   },
-    //   {
-    //     content: '<div>텃밭</div>',
-    //     latlng: new kakao.maps.LatLng(33.450879, 126.56994),
-    //   },
-    //   {
-    //     content: '<div>근린공원</div>',
-    //     latlng: new kakao.maps.LatLng(33.451393, 126.570738),
-    //   },
-    // ]
 
     positions.map(position => {
       const marker = new kakao.maps.Marker({
@@ -91,29 +112,23 @@ const MapPage = () => {
         position: position.latlng,
       })
 
-      const infowindow = new kakao.maps.InfoWindow({
+      const overlay = new kakao.maps.CustomOverlay({
         content: position.content,
+        position: position.latlng,
       })
 
-      kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow))
-      kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow))
+      kakao.maps.event.addListener(marker, 'mouseover', () => {
+        overlay.setMap(map)
+      })
+
+      kakao.maps.event.addListener(marker, 'mouseout', () => {
+        overlay.setMap(null)
+      })
     })
   }
 
-  useEffect(() => {
-    createMap()
-  }, [mask])
-
-  // windowInfo 이벤트
-  const makeOverListener = (map, marker, infowindow) => {
-    return () => {
-      infowindow.open(map, marker)
-    }
-  }
-
-  const makeOutListener = infowindow => {
-    return () => infowindow.close()
-  }
+  getCenter()
+  setCenter()
 
   return (
     <PageTemplate>
