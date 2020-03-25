@@ -106,15 +106,18 @@ const MapPage = () => {
         throw err
       })
 
+    if (!res) {
+      return alert('새로고침을 해주세요')
+    }
+
     // 약국 정보 추출
     const {
       data: { stores },
     } = res
 
-    if (stores.length === 0) {
+    if (!stores) {
       return alert('새로고침을 해주세요')
     }
-
     setMask(stores)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -186,6 +189,7 @@ const MapPage = () => {
         <Button onClick={doSearch}>검색</Button>
       </div>
       <p>Map</p>
+      <p>1km 내에 {mask && mask.length}개의 약국이 있습니다.</p>
       <div ref={mapRef} style={{ width: '500px', height: '400px' }}></div>
     </PageTemplate>
   )
