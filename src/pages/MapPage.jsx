@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { PageTemplate } from '../components'
 import { useRef, useEffect, useState } from 'react'
 // Component to HTML String
@@ -48,7 +48,7 @@ const MapPage = () => {
     center = [Number(sessionStorage.getItem('lat')), Number(sessionStorage.getItem('long'))]
   }
 
-  const getMask = async () => {
+  const getMask = useCallback(async () => {
     const res = await axios({
       method: 'GET',
       url: `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${center[0]}&lng=${center[1]}&m=500`,
@@ -65,11 +65,10 @@ const MapPage = () => {
     console.log(stores)
 
     setMask(prevMask => {
-      if (prevMask !== stores) {
-        return prevMask.concat(stores)
-      }
+      return prevMask.concat(stores)
     })
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     positions = stores.map(store => ({
       content: renderToString(
         <Overlay name={store.name} addr={store.addr} remain_stat={store.remain_stat} />,
@@ -79,11 +78,12 @@ const MapPage = () => {
     console.log(positions)
 
     createMap()
-  }
+  }, [mask])
 
   console.log(mask)
 
   const createMap = () => {
+    console.log(center);
     //지도를 담을 영역의 DOM 레퍼런스
     const container = mapRef.current
 
@@ -117,11 +117,11 @@ const MapPage = () => {
         position: position.latlng,
       })
 
-      kakao.maps.event.addListener(marker, 'mouseover', () => {
+      kakao.maps.event.addListener(marker, 'mousedown', () => {
         overlay.setMap(map)
       })
 
-      kakao.maps.event.addListener(marker, 'mouseout', () => {
+      kakao.maps.event.addListener(marker, 'mouseup', () => {
         overlay.setMap(null)
       })
     })
