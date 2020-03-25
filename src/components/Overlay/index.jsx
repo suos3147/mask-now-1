@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-const Overlay = ({ name, addr, remain_stat }) => {
+const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat }) => {
   return (
     <article css={articleStyle}>
       <div css={nameStyle}>{name}</div>

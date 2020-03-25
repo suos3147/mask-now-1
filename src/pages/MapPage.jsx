@@ -51,7 +51,7 @@ const MapPage = () => {
   const getMask = useCallback(async () => {
     const res = await axios({
       method: 'GET',
-      url: `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${center[0]}&lng=${center[1]}&m=500`,
+      url: `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${center[0]}&lng=${center[1]}&m=1000`,
     })
       .then(data => data)
       .catch(err => {
@@ -83,7 +83,7 @@ const MapPage = () => {
   console.log(mask)
 
   const createMap = () => {
-    console.log(center);
+    console.log(center)
     //지도를 담을 영역의 DOM 레퍼런스
     const container = mapRef.current
 
