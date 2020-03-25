@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core'
+import { jsx } from '@emotion/core'
 import Overlay from '.'
 
 export default {
@@ -12,6 +12,8 @@ export const Default = () => <Overlay />
 export const plenty = () => <Overlay remain_stat="plenty" />
 
 export const some = () => <Overlay remain_stat="some" />
+
+export const few = () => <Overlay remain_stat="few" />
 
 export const empty = () => <Overlay remain_stat="empty" />
 

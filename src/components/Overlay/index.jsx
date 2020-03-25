@@ -10,8 +10,10 @@ const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat }
           ? '100개 이상'
           : remain_stat === 'some'
           ? '30~100개'
-          : remain_stat === 'empty'
+          : remain_stat === 'few'
           ? '2~30개'
+          : remain_stat === 'empty'
+          ? '1개 이하'
           : '판매 중지'}
       </div>
       <div css={addrStyle}>
@@ -51,6 +53,9 @@ const remainStyle = {
   `,
   some: css`
     color: #9b59b6;
+  `,
+  few: css`
+    color: #f53b57;
   `,
   empty: css`
     color: #c0392b;
