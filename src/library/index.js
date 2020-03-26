@@ -1,3 +1,4 @@
 export { default as usePromise } from './usePromise'
+export { default as getCenter } from './getCenter'
 
-export { fetchData } from './fetchData'
+export { default as fetchData } from './fetchData'
