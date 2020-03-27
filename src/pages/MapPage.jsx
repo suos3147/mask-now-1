@@ -4,9 +4,9 @@ import { useRef, useEffect, useState } from 'react'
 // Component to HTML String
 import { renderToString } from 'react-dom/server'
 import axios from 'axios'
-import Overlay from '../components/Overlay'
-import Button from '../components/Button'
-import Input from '../components/Input'
+import { Button, Input, Overlay } from '../components'
+import { MASK_URL } from '../constants'
+import { getCenter } from '../library'
 
 const MapPage = () => {
   const [mask, setMask] = useState([])
@@ -26,7 +26,7 @@ const MapPage = () => {
 
     const res = await axios({
       method: 'GET',
-      url: `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=${input}`,
+      url: `${MASK_URL}/storesByAddr/json?address=${input}`,
     })
       .then(data => data)
       .catch(err => {
@@ -42,7 +42,7 @@ const MapPage = () => {
       return alert('검색 결과가 없습니다.')
     }
 
-    setMask(stores)
+    setMask([...stores])
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     positions = stores.map(store => ({
@@ -53,9 +53,12 @@ const MapPage = () => {
     }))
 
     console.log(stores)
-    if (stores[0]) {
-      sessionStorage.setItem('lat', stores[0].lat)
-      sessionStorage.setItem('lng', stores[0].lng)
+
+    const firstData = stores[0]
+
+    if (firstData) {
+      sessionStorage.setItem('lat', firstData.lat)
+      sessionStorage.setItem('lng', firstData.lng)
       setCenter()
     }
 
@@ -64,31 +67,6 @@ const MapPage = () => {
 
   const getInputValue = e => {
     search.current = e.target.value
-    console.log(search)
-  }
-
-  // 맵 center 가져오기, Geolocation API(chrome localhost, https만 가능)
-  const getCenter = () => {
-    if (navigator.geolocation) {
-      // GPS를 지원하면
-      navigator.geolocation.getCurrentPosition(
-        function(position) {
-          sessionStorage.setItem('lat', position.coords.latitude)
-          sessionStorage.setItem('lng', position.coords.longitude)
-        },
-        function(error) {
-          console.error(error)
-        },
-        {
-          enableHighAccuracy: false,
-          maximumAge: 0,
-          timeout: Infinity,
-        },
-      )
-    } else {
-      alert('GPS를 지원하지 않습니다')
-      console.log('Geolocation API does not work')
-    }
   }
 
   // center 변수 설정 함수
@@ -99,7 +77,7 @@ const MapPage = () => {
   const getMask = useCallback(async () => {
     const res = await axios({
       method: 'GET',
-      url: `https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByGeo/json?lat=${center[0]}&lng=${center[1]}&m=1000`,
+      url: `${MASK_URL}/storesByGeo/json?lat=${center[0]}&lng=${center[1]}&m=1000`,
     })
       .then(data => data)
       .catch(err => {
@@ -118,7 +96,7 @@ const MapPage = () => {
     if (!stores) {
       return alert('새로고침을 해주세요')
     }
-    setMask(stores)
+    setMask([...mask, ...stores])
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     positions = stores.map(store => ({
@@ -188,7 +166,6 @@ const MapPage = () => {
         <Input type="text" onChange={getInputValue} placeholder="구/동 단위로 검색" />
         <Button onClick={doSearch}>검색</Button>
       </div>
-      <p>Map</p>
       <p>1km 내에 {mask && mask.length}개의 약국이 있습니다.</p>
       <div ref={mapRef} style={{ width: '500px', height: '400px' }}></div>
     </PageTemplate>

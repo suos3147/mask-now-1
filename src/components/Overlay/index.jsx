@@ -1,18 +1,18 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat }) => {
+const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat: remainStat }) => {
   return (
     <article css={articleStyle}>
       <div css={nameStyle}>{name}</div>
-      <div css={[remainStyle[remain_stat], stackStyle]}>
-        {remain_stat === 'plenty'
+      <div css={[remainStyle[remainStat], stackStyle]}>
+        {remainStat === 'plenty'
           ? '100개 이상'
-          : remain_stat === 'some'
+          : remainStat === 'some'
           ? '30~100개'
-          : remain_stat === 'few'
+          : remainStat === 'few'
           ? '2~30개'
-          : remain_stat === 'empty'
+          : remainStat === 'empty'
           ? '1개 이하'
           : '판매 중지'}
       </div>
