@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react'
 const initialLocation = {
   latitude: 37.56647,
   longitude: 126.977963,
+  address: '',
 }
 
 const LocationContext = createContext({
