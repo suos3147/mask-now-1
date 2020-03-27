@@ -1,4 +1,5 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
+import LocationContext from '../store/LocationContext'
 import { PageTemplate } from '../components'
 import { useRef, useEffect, useState } from 'react'
 // Component to HTML String
@@ -6,7 +7,7 @@ import { renderToString } from 'react-dom/server'
 import axios from 'axios'
 import { Button, Input, Overlay } from '../components'
 import { MASK_URL } from '../constants'
-import { getCenter } from '../library'
+import { useCurrentLocation } from '../library'
 
 const MapPage = () => {
   const [mask, setMask] = useState([])
@@ -14,7 +15,12 @@ const MapPage = () => {
   let search = useRef('')
   let positions = useRef([])
   const { kakao } = window
-  let center = []
+
+  const { location, changeLocation } = useContext(LocationContext)
+  const currentLocation = useCurrentLocation()
+  useEffect(() => {
+    currentLocation && changeLocation(currentLocation)
+  })
 
   const doSearch = async () => {
     const input = search.current.trim()
@@ -52,16 +58,13 @@ const MapPage = () => {
       latlng: new kakao.maps.LatLng(store.lat, store.lng),
     }))
 
-    console.log(stores)
-
     const firstData = stores[0]
 
     if (firstData) {
       sessionStorage.setItem('lat', firstData.lat)
       sessionStorage.setItem('lng', firstData.lng)
-      setCenter()
     }
-
+    console.log('setMarker')
     setMarker()
   }
 
@@ -69,15 +72,10 @@ const MapPage = () => {
     search.current = e.target.value
   }
 
-  // center 변수 설정 함수
-  const setCenter = () => {
-    center = [Number(sessionStorage.getItem('lat')), Number(sessionStorage.getItem('lng'))]
-  }
-
   const getMask = useCallback(async () => {
     const res = await axios({
       method: 'GET',
-      url: `${MASK_URL}/storesByGeo/json?lat=${center[0]}&lng=${center[1]}&m=1000`,
+      url: `${MASK_URL}/storesByGeo/json?lat=${location.latitude}&lng=${location.longitude}&m=1000`,
     })
       .then(data => data)
       .catch(err => {
@@ -110,14 +108,13 @@ const MapPage = () => {
     setMarker()
   }, [mask])
 
-  const setMarker = () => {
+  const setMarker = useCallback(() => {
     //지도를 담을 영역의 DOM 레퍼런스
     const container = mapRef.current
 
-    console.log(center)
     const options = {
       //지도를 생성할 때 필요한 기본 옵션
-      center: new kakao.maps.LatLng(center[0], center[1]), //지도의 중심좌표.
+      center: new kakao.maps.LatLng(location.latitude, location.longitude), //지도의 중심좌표.
       level: 3, //지도의 레벨(확대, 축소 정도)
     }
     //지도 생성 및 객체 리턴
@@ -151,13 +148,11 @@ const MapPage = () => {
         overlay.setMap(null)
       })
     })
-  }
-
-  getCenter()
-  setCenter()
+  })
 
   useEffect(() => {
     getMask()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
