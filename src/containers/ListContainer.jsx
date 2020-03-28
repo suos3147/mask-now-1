@@ -4,7 +4,7 @@ import { List } from '../components'
 
 const ListContainer = () => {
   const [loading, response, error] = usePromise(() => {
-    return fetchMask({ method: 'GET', url: '/stores/json?page=1&perPage=500' })
+    return fetchMask({ method: 'GET', url: '/storesByGeo/json' })
   }, [])
 
   if (loading) return <p>Loading...</p>
@@ -12,7 +12,7 @@ const ListContainer = () => {
   if (!response) return null
 
   const { data } = response
-  return <List data={data.storeInfos}></List>
+  return <List data={data.stores}></List>
 }
 
 export default ListContainer

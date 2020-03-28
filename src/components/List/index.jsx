@@ -5,8 +5,8 @@ import { Item } from '..'
 const List = ({ data }) => {
   return (
     <ul>
-      {data.map(({ addr, name, code }) => (
-        <Item key={code} data={{ addr, name }} />
+      {data.map(({ code, addr, name, remain_stat, stock_at }) => (
+        <Item key={code} data={{ addr, name, remain_stat, stock_at }} />
       ))}
     </ul>
   )
