@@ -27,6 +27,8 @@ const setStyle = ({ variation, size, color, width }) => {
   const COLOR = COLORS[color]
 
   const defaultStyle = css`
+    display: flex;
+    align-items: center;
     border: 1px solid ${COLOR};
     border-radius: 0.2rem;
     font-size: 1rem;
