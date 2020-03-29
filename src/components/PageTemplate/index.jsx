@@ -12,7 +12,7 @@ const PageTemplate = ({ children }) => {
     <>
       <Header />
       <main css={mainStyle}>
-        <Typography variation="title">{name}</Typography>
+        {/* <Typography variation="title">{name}</Typography> */}
         {children}
       </main>
       <Footer color="primary" />
@@ -22,7 +22,9 @@ const PageTemplate = ({ children }) => {
 
 const mainStyle = css`
   position: relative;
-  padding: 3rem 0 0;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0.5rem 0;
   height: 100vh;
   background: #fff;
   z-index: 1;

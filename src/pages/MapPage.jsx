@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server'
 import { PageTemplate, SearchBar, Overlay } from '../components'
 import { useCurrentLocation, fetchMask } from '../library'
 import LocationContext from '../store/LocationContext'
+import COLORS from '../assets/colors'
 
 const MapPage = () => {
   const [mask, setMask] = useState([])
@@ -157,12 +158,35 @@ const MapPage = () => {
 
   return (
     <PageTemplate>
-      <div>
-        <SearchBar onClick={doSearch} onChange={getInputValue} placeholder="구/동 단위로 검색" />
-      </div>
-      <p>1km 내에 {mask && mask.length}개의 약국이 있습니다.</p>
+      <SearchBar onClick={doSearch} onChange={getInputValue} placeholder="구/동 단위로 검색" />
+      <p
+        style={{
+          position: 'absolute',
+          left: '50%',
+          bottom: '2rem',
+          transform: 'translateX(-50%)',
+          zIndex: 1000,
+          padding: '0.5rem',
+          width: '80%',
+          textAlign: 'center',
+          borderRadius: '10rem',
+          color: '#fff',
+          background: COLORS.primary,
+        }}
+      >
+        1km 내에 {mask && mask.length}개의 약국이 있습니다.
+      </p>
       {loading && <div>로딩중입니다.</div>}
-      {!loading && <div ref={mapRef} style={{ width: '100%', height: '500px' }}></div>}
+      {!loading && (
+        <div
+          ref={mapRef}
+          style={{
+            flex: 1,
+            marginLeft: '-0.5rem',
+            width: '100vw',
+          }}
+        ></div>
+      )}
     </PageTemplate>
   )
 }

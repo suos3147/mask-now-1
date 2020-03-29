@@ -23,8 +23,9 @@ const style = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.3rem 1rem;
+  padding: 1rem;
   width: 100%;
+  height: 3.5rem;
   background: #fff;
   z-index: 10;
   span {

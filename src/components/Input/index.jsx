@@ -8,13 +8,13 @@ const Input = ({ onChange, placeholder }) => {
 const style = css`
   width: 30%;
   margin-right: 6px;
-  padding: 8px 0 3px 0;
   font-size: 14px;
+  border-style: none;
+  outline: none;
+  border-bottom: 2px solid #ababab30;
   transition: ease 0.3s;
   &:focus {
     transform: scale(1.014);
-    border-style: none;
-    outline: none;
     font-size: 17px;
     border-bottom: 2px solid #ababab;
   }
