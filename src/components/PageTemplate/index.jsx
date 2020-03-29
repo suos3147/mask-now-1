@@ -11,7 +11,7 @@ const PageTemplate = ({ children }) => {
       <Header />
       <Typography variation="title">{name}</Typography>
       {children}
-      <Footer />
+      <Footer color="primary" />
     </>
   )
 }

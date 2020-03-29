@@ -162,7 +162,7 @@ const MapPage = () => {
       </div>
       <p>1km 내에 {mask && mask.length}개의 약국이 있습니다.</p>
       {loading && <div>로딩중입니다.</div>}
-      {!loading && <div ref={mapRef} style={{ width: '500px', height: '400px' }}></div>}
+      {!loading && <div ref={mapRef} style={{ width: '100%', height: '500px' }}></div>}
     </PageTemplate>
   )
 }
