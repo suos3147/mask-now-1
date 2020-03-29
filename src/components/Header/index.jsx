@@ -17,11 +17,16 @@ const Header = () => {
 }
 
 const style = css`
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.3rem 1rem;
-  color: #fff;
+  width: 100%;
+  background: #fff;
+  z-index: 10;
   span {
     font-size: 2rem;
   }
