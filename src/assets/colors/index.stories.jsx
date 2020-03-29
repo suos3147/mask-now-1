@@ -1,18 +1,22 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import Colors from '.'
+import colors from '.'
 
 export default {
-  component: Colors,
+  component: colors,
   title: 'Assets|Color Palette',
 }
 
-export const Default = () => (
-  <section css={palette}>
-    <div className="primary">primary</div>
-    <div className="default">default</div>
-  </section>
-)
+export const Default = () => {
+  const colorNames = Object.keys(colors)
+  return (
+    <section css={palette}>
+      {colorNames.map(name => (
+        <div css={{ background: colors[name] }}>{name}</div>
+      ))}
+    </section>
+  )
+}
 
 const palette = css`
   display: flex;
@@ -29,11 +33,5 @@ const palette = css`
     & ~ div {
       margin-left: 1rem;
     }
-  }
-  .primary {
-    background: ${Colors.primary};
-  }
-  .default {
-    background: ${Colors.default};
   }
 `
