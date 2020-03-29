@@ -1,18 +1,43 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core'
 import { Navigation } from '..'
+import COLORS from '../../assets/colors'
 
 const Header = () => {
   return (
-    <header>
-      <h1>
-        <span role="img" aria-label="Mask">
-          😷
-        </span>
-        2020
-      </h1>
+    <header css={style}>
+      <span role="img" aria-label="Mask">
+        😷
+      </span>
+      <h1>Mask Now</h1>
+
       <Navigation></Navigation>
     </header>
   )
 }
+
+const style = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 1rem;
+  color: #fff;
+  span {
+    font-size: 2rem;
+  }
+  h1 {
+    margin-left: 0.5rem;
+    margin-right: auto;
+    background-color: ${COLORS.primary};
+    background-image: linear-gradient(45deg, ${COLORS.primary}, ${COLORS.plenty});
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    text-transform: uppercase;
+  }
+`
 
 export default Header
