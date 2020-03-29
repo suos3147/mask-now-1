@@ -1,12 +1,8 @@
-import React, { useCallback, useContext } from 'react'
-import LocationContext from '../store/LocationContext'
-import { PageTemplate } from '../components'
-import { useRef, useEffect, useState } from 'react'
-// Component to HTML String
+import React, { useRef, useEffect, useState, useCallback, useContext } from 'react'
 import { renderToString } from 'react-dom/server'
-import { Button, Input, Overlay } from '../components'
-import { useCurrentLocation } from '../library'
-import { fetchMask } from '../library'
+import { PageTemplate, Button, Input, Overlay } from '../components'
+import { useCurrentLocation, fetchMask } from '../library'
+import LocationContext from '../store/LocationContext'
 
 const MapPage = () => {
   const [mask, setMask] = useState([])
@@ -92,10 +88,6 @@ const MapPage = () => {
 
     setLoading(true)
     const response = await fetchMask({ method: 'GET', url: `/storesByAddr/json?address=${input}` })
-      .then(data => data)
-      .catch(err => {
-        throw err
-      })
     setLoading(false)
 
     // 약국 정보 추출
@@ -125,7 +117,6 @@ const MapPage = () => {
 
     changeLocation(newLocation)
 
-    console.log('setMarker')
     setMarker(newLocation)
   }
 
@@ -139,10 +130,6 @@ const MapPage = () => {
       method: 'GET',
       url: `/storesByGeo/json?lat=${location.latitude}&lng=${location.longitude}&m=1000`,
     })
-      .then(data => data)
-      .catch(err => {
-        throw err
-      })
     setLoading(false)
 
     // 약국 정보 추출
@@ -165,8 +152,6 @@ const MapPage = () => {
   }, [kakao.maps.LatLng, location, setMarker])
 
   useEffect(() => {
-    console.log(currentLocation)
-    console.log(location)
     if (currentLocation === location) getMask()
   }, [currentLocation, getMask, location])
 
