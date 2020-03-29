@@ -21,8 +21,7 @@ const setStyle = color => {
     left: 0;
     width: 100%;
     background: ${COLORS[color]};
-    place-items: center;
-    padding: 5px;
+    padding: 15px;
     text-align: center;
     color: white;
     & a {
