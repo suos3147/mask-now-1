@@ -1,6 +1,12 @@
 const COLORS = {
-  primary: '#51a4f4',
+  primary: 'DodgerBlue',
+  secondary: 'Salmon',
   default: '#333',
+  plenty: 'ForestGreen',
+  some: 'DarkOrange',
+  few: 'Crimson',
+  empty: 'DarkSlateGray',
+  break: 'DimGray',
 }
 
 export default COLORS
