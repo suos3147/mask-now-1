@@ -1,22 +1,15 @@
 /** @jsx jsx */
-import React from 'react'
+import { Fragment } from 'react'
 import { jsx, css } from '@emotion/core'
-import { useLocation } from 'react-router-dom'
-import { Header, Footer, Typography } from '..'
-import { ROUTES } from '../../constants'
+import { Header, Footer } from '..'
 
 const PageTemplate = ({ children }) => {
-  const { pathname } = useLocation()
-  const [{ name }] = ROUTES.filter(({ path }) => path === pathname)
   return (
-    <>
+    <Fragment>
       <Header />
-      <main css={mainStyle}>
-        {/* <Typography variation="title">{name}</Typography> */}
-        {children}
-      </main>
+      <main css={mainStyle}>{children}</main>
       <Footer color="primary" />
-    </>
+    </Fragment>
   )
 }
 
@@ -24,7 +17,7 @@ const mainStyle = css`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 3rem 0.5rem 0;
+  padding: 4rem 0.5rem 0;
   height: 100vh;
   background: #fff;
   z-index: 1;
