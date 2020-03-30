@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback, useContext } from 'react'
 import { renderToString } from 'react-dom/server'
-import { PageTemplate, SearchBar, Overlay } from '../components'
+import { PageTemplate, SearchBar, Overlay, Loader } from '../components'
 import { useCurrentLocation, fetchMask } from '../library'
 import LocationContext from '../store/LocationContext'
 import COLORS from '../assets/colors'
@@ -176,7 +176,7 @@ const MapPage = () => {
       >
         1km 내에 {mask && mask.length}개의 약국이 있습니다.
       </p>
-      {loading && <div>로딩중입니다.</div>}
+      {loading && <Loader />}
       {!loading && (
         <div
           ref={mapRef}
