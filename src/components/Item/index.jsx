@@ -44,7 +44,7 @@ Item.propTypes = {
 
 const setStyle = status => {
   const tag = {
-    plenty: '#133926',
+    plenty: '#206040',
     some: '#e6b800',
     few: '#990000',
     empty: '#4d4d4d',
