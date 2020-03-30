@@ -14,7 +14,7 @@ const style = css`
   border-bottom: 2px solid #ababab30;
   transition: ease 0.3s;
   &:focus {
-    transform: scale(1.014);
+    transform: scale(1.006);
     font-size: 17px;
     border-bottom: 2px solid #ababab;
   }
