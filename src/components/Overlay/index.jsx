@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
+import COLORS from '../../assets/colors'
 
 const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat: remainStat }) => {
   return (
@@ -25,7 +26,7 @@ const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat: 
 
 const articleStyle = css`
   padding: 5px;
-  background: #f1f2f6;
+  background: #fafbfa;
   box-sizing: border-box;
   width: 130px;
   border: none;
@@ -37,31 +38,31 @@ const articleStyle = css`
 
 const nameStyle = css`
   padding-bottom: 2px;
-  border-bottom: 1px solid #2980b9;
-  color: #2980b9;
-  font-size: 14px;
+  border-bottom: 1px solid ${COLORS['primary']};
+  color: ${COLORS['primary']};
+  font-size: 15px;
 `
 
 const stackStyle = css`
   margin: 3px 0;
-  font-size: 16px;
+  font-size: 17px;
 `
 
 const remainStyle = {
   plenty: css`
-    color: #1abc9c;
+    color: ${COLORS['plenty']};
   `,
   some: css`
-    color: #9b59b6;
+    color: ${COLORS['some']};
   `,
   few: css`
-    color: #f53b57;
+    color: ${COLORS['few']};
   `,
   empty: css`
-    color: #c0392b;
+    color: ${COLORS['empty']};
   `,
   break: css`
-    color: #2c3e50;
+    color: ${COLORS['break']};
   `,
 }
 
