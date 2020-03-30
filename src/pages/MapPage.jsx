@@ -97,7 +97,8 @@ const MapPage = () => {
     } = response
 
     if (stores.length === 0) {
-      return alert('검색 결과가 없습니다.')
+      alert('검색 결과가 없습니다.')
+      return window.history.go(0)
     }
 
     setMask(mask => [...stores])
