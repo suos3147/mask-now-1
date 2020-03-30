@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { PageTemplate, ModalWithButton } from '../components'
 import { getCookie, createCookie } from '../library'
+import { ListContainer } from '../containers'
 
 const ListPage = () => {
   const [modal, setModal] = useState(true)
@@ -12,7 +13,6 @@ const ListPage = () => {
   return (
     <PageTemplate>
       {!getCookie() && modal && <ModalWithButton onClick={toggleModal} />}
-      <p>List</p>
       <ListContainer></ListContainer>
     </PageTemplate>
   )
