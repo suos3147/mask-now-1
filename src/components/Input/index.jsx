@@ -12,6 +12,7 @@ const style = css`
   border-style: none;
   outline: none;
   border-bottom: 2px solid #ababab30;
+
   transition: ease 0.3s;
   &:focus {
     transform: scale(1.006);
