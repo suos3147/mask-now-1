@@ -17,9 +17,11 @@ const style = css`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
   margin: 1rem;
-  overflow: auto;
-  scrollbar-width: none;
+  overflow-y: scroll;
   list-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @media screen and (max-width: 1040px) {
     grid-template-columns: repeat(2, 1fr);
   }

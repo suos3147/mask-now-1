@@ -66,11 +66,15 @@ const setStyle = status => {
       &:nth-of-type(1) {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: baseline;
         justify-content: space-between;
         margin-bottom: 1.5rem;
         font-weight: bold;
         font-size: 1.7rem;
+      }
+      span:nth-of-type(1) {
+        width: 63%;
+        word-break: normal;
       }
       span:nth-of-type(2) {
         width: fit-content;
