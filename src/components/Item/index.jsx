@@ -73,7 +73,7 @@ const setStyle = status => {
         font-size: 1.7rem;
       }
       span:nth-of-type(1) {
-        width: 63%;
+        width: 62%;
         word-break: normal;
       }
       span:nth-of-type(2) {
