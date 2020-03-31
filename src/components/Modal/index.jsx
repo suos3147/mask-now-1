@@ -17,14 +17,16 @@ const style = css`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 90;
   & > div {
     padding-top: 45px;
     width: 350px;
-    height: 420px;
+    height: 440px;
     background: white;
     border-radius: 15px;
     animation-name: popup;
     animation-duration: 0.5s;
+    z-index: 100;
   }
 
   @keyframes popup {
