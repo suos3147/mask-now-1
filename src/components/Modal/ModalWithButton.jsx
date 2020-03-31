@@ -65,23 +65,19 @@ const container = () => css`
   }
 
   & > p {
-    margin: 14px;
+    width: 92%;
+    margin: 14px 0px;
+    line-height: 25px;
     font-size: 19px;
-  }
-
-  & > p > span {
-    margin-right: 5px;
   }
 `
 
 const buttonContainer = () => css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  margin-top: 20px;
+  text-align: center;
   & > span {
     margin: 0;
-    margin-right: 5px;
     border-bottom: 2px solid #bcbcbc;
     color: black;
     font-size: 18px;
