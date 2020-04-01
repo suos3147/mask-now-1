@@ -45,7 +45,7 @@ const container = css`
   max-width: 250px;
   background: #fdfdfd;
   border-radius: 10px;
-  box-shadow: 1px 1px 2px 1px #cbcbcb;
+  box-shadow: 1px 1px 2px 1px #dcdcdc;
   z-index: 1000;
   animation-name: fromLeft;
   animation-duration: 1.5s;
@@ -64,7 +64,7 @@ const container = css`
     align-items: center;
     background: #fff;
     border-radius: 4px;
-    box-shadow: 1px 1px 1px 1px #cbcbcb;
+    box-shadow: 1px 1px 1px 1px #dcdcdc;
   }
 
   & > div > span {
@@ -126,7 +126,7 @@ const container = css`
       width: 90%;
       height: 14%;
       margin: 0 0 3px 5px;
-      box-shadow: 0.5px 0.5px 0.5px 0.5px #ababab;
+      box-shadow: 0.5px 0.5px 0.5px 0.5px #dcdcdc;
       div {
         width: 12px;
         height: 12px;

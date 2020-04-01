@@ -35,6 +35,15 @@ const articleStyle = css`
   display: flex;
   flex-direction: column;
   box-shadow: 1px 1px 2px 1px #cbcbcb;
+  animation: bounce 0.5s infinite alternate;
+  @keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-6px);
+    }
+  }
 `
 
 const nameStyle = css`
