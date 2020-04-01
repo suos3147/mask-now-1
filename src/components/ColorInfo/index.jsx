@@ -5,7 +5,7 @@ import COLORS from '../../assets/colors'
 const ColorInfo = () => {
   return (
     <div css={container}>
-      <h3>색상별 마스크 재고 개수</h3>
+      <h5>색상별 마스크 재고 개수</h5>
       <div>
         <div></div>
         <span>&nbsp; 100개 이상</span>
@@ -32,42 +32,48 @@ const ColorInfo = () => {
 
 const container = css`
   position: fixed;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   top: 110px;
   left: 3px;
-  width: 220px;
-  height: 300px;
+  width: 17%;
+  height: 23%;
+  min-width: 140px;
+  min-height: 150px;
+  max-width: 250px;
   background: #fdfdfd;
   border-radius: 10px;
-  box-shadow: 1px 1px 2px 1px #ababab;
+  box-shadow: 1px 1px 2px 1px #dcdcdc;
   z-index: 1000;
   animation-name: fromLeft;
   animation-duration: 1.5s;
-  & > h3 {
-    margin-top: 8px;
+  & > h5 {
+    padding: 0px 2px;
     text-align: center;
     color: #655656;
   }
   & > div {
-    margin-top: 15px;
-    margin-left: 10px;
+    margin-top: 3%;
     display: flex;
-    width: 90%;
+    width: 92%;
+    height: 14%;
     padding: 4px 0px 4px 4px;
     justify-content: flex-start;
     align-items: center;
     background: #fff;
     border-radius: 4px;
-    box-shadow: 1px 1px 1px 0.3px #ababab;
+    box-shadow: 1px 1px 1px 1px #dcdcdc;
   }
 
   & > div > span {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   & > div > div {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 100%;
   }
 
@@ -107,6 +113,26 @@ const container = css`
       }
       to {
         margin-left: 0;
+      }
+    }
+  }
+  @media screen and (max-width: 760px) {
+    width: 133px;
+    height: 150px;
+    & > h5 {
+      font-size: 12px;
+    }
+    & > div {
+      width: 90%;
+      height: 14%;
+      margin: 0 0 3px 5px;
+      box-shadow: 0.5px 0.5px 0.5px 0.5px #dcdcdc;
+      div {
+        width: 12px;
+        height: 12px;
+      }
+      span {
+        font-size: 11px;
       }
     }
   }
