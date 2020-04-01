@@ -64,8 +64,8 @@ const MapPage = () => {
         const overlay = new kakao.maps.CustomOverlay({
           content: position.content,
           position: position.latlng,
-          xAnchor: 0.55,
-          yAnchor: 0.6,
+          xAnchor: 0.7,
+          yAnchor: 0.59,
         })
 
         kakao.maps.event.addListener(marker, 'mousedown', () => {

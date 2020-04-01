@@ -26,14 +26,15 @@ const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat: 
 
 const articleStyle = css`
   padding: 5px;
-  background: #fefefe;
+  background: #ffffff;
   box-sizing: border-box;
-  width: 130px;
-  border: none;
-  border-radius: 5%;
+  width: 100%;
+  border: 1px solid ${COLORS['primary']};
+  border-radius: 3%;
   margin: 0px 0px 195px 20px;
   display: flex;
   flex-direction: column;
+  box-shadow: 1px 1px 2px 1px #cbcbcb;
 `
 
 const nameStyle = css`
