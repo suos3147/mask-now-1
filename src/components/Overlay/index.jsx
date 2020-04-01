@@ -26,7 +26,7 @@ const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat: 
 
 const articleStyle = css`
   padding: 5px;
-  background: #fafbfa;
+  background: #fefefe;
   box-sizing: border-box;
   width: 130px;
   border: none;

@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState, useCallback, useContext } from 'react'
 import { renderToString } from 'react-dom/server'
-import { PageTemplate, SearchBar, Overlay, Loader } from '../components'
+import { PageTemplate, SearchBar, Overlay, Loader, ColorInfo } from '../components'
 import { useCurrentLocation, fetchMask } from '../library'
 import LocationContext from '../store/LocationContext'
 import COLORS from '../assets/colors'
+import IMAGES from '../assets/images'
 
 const MapPage = () => {
   const [mask, setMask] = useState([])
@@ -47,14 +48,24 @@ const MapPage = () => {
 
       // 마커 설정
       positions.current.forEach(position => {
+        // 마커 이미지 관련 변수
+        const imageSrc = IMAGES[position.remainStat],
+          imageSize = new kakao.maps.Size(53, 43),
+          imageOption = { offset: new kakao.maps.Point(27, 69) }
+
+        const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
+
         const marker = new kakao.maps.Marker({
           map: map,
           position: position.latlng,
+          image: markerImage,
         })
 
         const overlay = new kakao.maps.CustomOverlay({
           content: position.content,
           position: position.latlng,
+          xAnchor: 0.55,
+          yAnchor: 0.6,
         })
 
         kakao.maps.event.addListener(marker, 'mousedown', () => {
@@ -74,6 +85,9 @@ const MapPage = () => {
       kakao.maps.Map,
       kakao.maps.MapTypeControl,
       kakao.maps.Marker,
+      kakao.maps.MarkerImage,
+      kakao.maps.Point,
+      kakao.maps.Size,
       kakao.maps.ZoomControl,
       kakao.maps.event,
     ],
@@ -108,6 +122,7 @@ const MapPage = () => {
         <Overlay name={store.name} addr={store.addr} remain_stat={store.remain_stat} />,
       ),
       latlng: new kakao.maps.LatLng(store.lat, store.lng),
+      remainStat: store.remain_stat,
     }))
 
     const firstData = stores[0]
@@ -147,6 +162,7 @@ const MapPage = () => {
           <Overlay name={store.name} addr={store.addr} remain_stat={store.remain_stat} />,
         ),
         latlng: new kakao.maps.LatLng(store.lat, store.lng),
+        remainStat: store.remain_stat,
       }))
 
       setMarker(location)
@@ -159,6 +175,7 @@ const MapPage = () => {
 
   return (
     <PageTemplate>
+      <ColorInfo />
       <SearchBar onClick={doSearch} onChange={getInputValue} placeholder="구/동 단위로 검색" />
       <p
         style={{
