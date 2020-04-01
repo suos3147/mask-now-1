@@ -62,7 +62,7 @@ const remainStyle = {
     color: ${COLORS['empty']};
   `,
   break: css`
-    color: ${COLORS['break']};
+    color: black;
   `,
 }
 

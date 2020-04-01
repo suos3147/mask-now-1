@@ -32,7 +32,6 @@ const ColorInfo = () => {
 
 const container = css`
   position: fixed;
-
   top: 110px;
   left: 3px;
   width: 220px;
@@ -58,7 +57,7 @@ const container = css`
     align-items: center;
     background: #fff;
     border-radius: 4px;
-    box-shadow: 1px 1px 1px 0.3px #ababab;
+    box-shadow: 1px 1px 1px 1px #ababab;
   }
 
   & > div > span {
@@ -107,6 +106,26 @@ const container = css`
       }
       to {
         margin-left: 0;
+      }
+    }
+  }
+  @media screen and (max-width: 760px) {
+    width: 133px;
+    height: 150px;
+    & > h3 {
+      font-size: 12px;
+    }
+    & > div {
+      width: 90%;
+      height: 14%;
+      margin: 0 0 3px 5px;
+      box-shadow: 0.5px 0.5px 0.5px 0.5px #ababab;
+      div {
+        width: 12px;
+        height: 12px;
+      }
+      span {
+        font-size: 11px;
       }
     }
   }
