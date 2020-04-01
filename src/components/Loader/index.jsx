@@ -22,7 +22,7 @@ const style = (borderColor, fontColor) => css`
     border-radius: 100%;
     box-sizing: border-box;
   }
-  & > div:first-child {
+  & > div:first-of-type {
     border: 3px solid transparent;
     border-color: transparent ${COLORS[borderColor]};
     animation: rotate-loading 1.5s linear 0s infinite normal;
@@ -37,7 +37,7 @@ const style = (borderColor, fontColor) => css`
     opacity: 0;
     animation: loading-text-opacity 2s linear 0s infinite normal;
   }
-  &:hover div:first-child {
+  &:hover div:first-of-type {
     border-color: transparent ${COLORS[fontColor]};
   }
   &:hover > &,

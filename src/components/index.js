@@ -15,3 +15,5 @@ export { default as ModalWithButton } from './Modal/ModalWithButton'
 
 export { default as List } from './List'
 export { default as Item } from './Item'
+
+export { default as ColorInfo } from './ColorInfo'
