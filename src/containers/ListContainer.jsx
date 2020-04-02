@@ -1,11 +1,17 @@
-import React from 'react'
-import { fetchMask, usePromise } from '../library'
+import React, { useState, useEffect } from 'react'
+import { fetchMask, usePromise, useCurrentLocation } from '../library'
 import { List, Loader } from '../components'
+import LocationContext from '../store/LocationContext'
 
 const ListContainer = () => {
+  let { latitude, longitude } = useCurrentLocation()
   const [loading, response, error] = usePromise(() => {
-    return fetchMask({ method: 'GET', url: '/storesByGeo/json' })
-  }, [])
+    if (latitude || longitude)
+      return fetchMask({
+        method: 'GET',
+        url: `/storesByGeo/json?lat=${latitude}&lon=${longitude}`,
+      })
+  }, [latitude, longitude])
 
   if (loading) return <Loader></Loader>
   if (error) return <p>What happen?😧</p>
