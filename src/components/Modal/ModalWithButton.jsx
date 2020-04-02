@@ -5,7 +5,7 @@ import { Button } from '../index'
 
 const ModalWithButton = ({ toggleModal, todayClose }) => {
   return (
-    <Modal>
+    <Modal size="long">
       <div css={container}>
         <div>
           <h2>

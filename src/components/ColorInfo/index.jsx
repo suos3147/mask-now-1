@@ -36,8 +36,8 @@ const container = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 110px;
-  left: 3px;
+  top: 129px;
+  left: 4px;
   width: 17%;
   height: 23%;
   min-width: 140px;
