@@ -9,11 +9,6 @@ const DayContainer = () => {
     2: '화요일',
     3: '수요일',
     4: '목요일',
-    5: '금요일',
-    6: '월요일',
-    7: '화요일',
-    8: '수요일',
-    9: '목요일',
     0: '금요일',
   }
   const popupModal = number => {
@@ -26,9 +21,7 @@ const DayContainer = () => {
   return (
     <div>
       <NumberPad popupModal={popupModal} />
-      {modal && (
-        <ModalWithDay closeModal={closeModal} size="wide" day={day} days={days}></ModalWithDay>
-      )}
+      <ModalWithDay closeModal={closeModal} size="wide" day={day} days={days} visible={modal} />
     </div>
   )
 }
