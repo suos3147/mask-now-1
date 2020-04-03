@@ -21,9 +21,7 @@ const DayContainer = () => {
   return (
     <div>
       <NumberPad popupModal={popupModal} />
-      {modal && (
-        <ModalWithDay closeModal={closeModal} size="wide" day={day} days={days}></ModalWithDay>
-      )}
+      <ModalWithDay closeModal={closeModal} size="wide" day={day} days={days} visible={modal} />
     </div>
   )
 }
