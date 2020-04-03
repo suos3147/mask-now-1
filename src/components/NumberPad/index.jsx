@@ -29,6 +29,11 @@ const style = css`
   margin: 0 auto;
   width: 80vw;
   height: calc((80vw / 5) * 2);
+  @media screen and (min-width: 1040px) {
+    grid-template: repeat(1, 1fr) / repeat(10, 1fr);
+    max-height: 220px;
+    margin-top: 10%;
+  }
 `
 
 export default NumberPad

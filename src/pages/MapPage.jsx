@@ -17,7 +17,7 @@ const MapPage = () => {
           style={{
             flex: 1,
             marginLeft: '-0.5rem',
-            width: '100vw',
+            width: '99vw',
           }}
         ></div>
       )}

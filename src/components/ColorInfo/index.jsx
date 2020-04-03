@@ -38,10 +38,10 @@ const container = css`
   align-items: center;
   top: 129px;
   left: 4px;
-  width: 17%;
-  height: 23%;
+  width: 20%;
+  height: 33%;
   min-width: 140px;
-  min-height: 150px;
+  min-height: 175px;
   max-width: 250px;
   background: #fdfdfd;
   border-radius: 10px;
@@ -53,6 +53,9 @@ const container = css`
     padding: 0px 2px;
     text-align: center;
     color: #655656;
+    font-size: 19px;
+    word-break: keep-all;
+    word-wrap: break-word;
   }
   & > div {
     margin-top: 3%;
@@ -116,8 +119,13 @@ const container = css`
       }
     }
   }
-  @media screen and (max-width: 760px) {
-    width: 133px;
+  @media screen and (max-width: 1000px) {
+    h5 {
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 770px) {
+    min-width: 133px;
     height: 150px;
     & > h5 {
       font-size: 12px;
