@@ -39,13 +39,13 @@ const container = css`
   top: 129px;
   left: 4px;
   width: 20%;
-  height: 33%;
+  height: 34%;
   min-width: 140px;
-  min-height: 175px;
+  min-height: 230px;
   max-width: 250px;
   background: #fdfdfd;
   border-radius: 10px;
-  box-shadow: 1px 1px 2px 1px #dcdcdc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   z-index: 1000;
   animation-name: fromLeft;
   animation-duration: 1.5s;
@@ -67,7 +67,7 @@ const container = css`
     align-items: center;
     background: #fff;
     border-radius: 4px;
-    box-shadow: 1px 1px 1px 1px #dcdcdc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 
   & > div > span {
@@ -120,21 +120,23 @@ const container = css`
     }
   }
   @media screen and (max-width: 1000px) {
+    min-width: 155px;
     h5 {
       font-size: 15px;
     }
   }
-  @media screen and (max-width: 770px) {
+  @media screen and (max-width: 500px) {
     min-width: 133px;
+    min-height: 150px;
     height: 150px;
-    & > h5 {
+    h5 {
       font-size: 12px;
     }
-    & > div {
+    div {
       width: 90%;
       height: 14%;
       margin: 0 0 3px 5px;
-      box-shadow: 0.5px 0.5px 0.5px 0.5px #dcdcdc;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       div {
         width: 12px;
         height: 12px;

@@ -52,7 +52,7 @@ const style = (size, disappear) => css`
     ${sizeStyle(size)};
     background: white;
     border-radius: 15px;
-    box-shadow: 0.8px 1.3px 1.4px 1px rgba(232, 232, 232, 0.6);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     animation-name: popup;
     animation-duration: 0.4s;
     animation-timing-function: ease-in;
