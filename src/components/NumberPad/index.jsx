@@ -29,6 +29,10 @@ const style = css`
   margin: 0 auto;
   width: 80vw;
   height: calc((80vw / 5) * 2);
+  @media screen and (min-width: 1040px) {
+    max-height: 330px;
+    max-width: 830px;
+  }
 `
 
 export default NumberPad

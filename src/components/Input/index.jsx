@@ -12,10 +12,10 @@ const style = css`
   font-size: 14px;
   border-style: none;
   outline: none;
-  border-bottom: 2px solid #ababab30;
+  border-bottom: 2px solid #bcbcbc;
   transition: ease 0.3s;
   &:focus {
-    transform: scale(1.006);
+    transform: scale(1.01);
     font-size: 17px;
     border-bottom: 2px solid #ababab;
   }
