@@ -9,7 +9,12 @@ const NumberPad = ({ popupModal }) => {
   return (
     <div css={style}>
       {numbers.map(number => (
-        <Button key={number} variation="outline" size="medium" onClick={() => popupModal(number)}>
+        <Button
+          key={number}
+          variation="outline"
+          size="medium"
+          onClick={() => popupModal(number % 5)}
+        >
           {number}
         </Button>
       ))}
