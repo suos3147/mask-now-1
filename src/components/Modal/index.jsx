@@ -36,6 +36,15 @@ const style = (size, disappear) => css`
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in;
+  ${disappear &&
+    css`
+      animation-name: fadeOut;
+      animation-duration: 0.3s;
+      animation-timing-function: ease-in;
+    `}
   & > div {
     padding-top: 45px;
     min-width: 360px;
@@ -45,7 +54,8 @@ const style = (size, disappear) => css`
     border-radius: 15px;
     box-shadow: 0.8px 1.3px 1.4px 1px rgba(232, 232, 232, 0.6);
     animation-name: popup;
-    animation-duration: 0.5s;
+    animation-duration: 0.4s;
+    animation-timing-function: ease-in;
     ${disappear &&
       css`
         animation-name: close;
@@ -68,6 +78,22 @@ const style = (size, disappear) => css`
     }
     to {
       transform: scale(0) translateY(-500px);
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
     }
   }
 `

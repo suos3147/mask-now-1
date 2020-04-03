@@ -15,8 +15,8 @@ const ListPage = () => {
   }
   return (
     <PageTemplate>
-      {!getCookie() && modal && (
-        <ModalWithButton toggleModal={toggleModal} todayClose={todayClose} />
+      {!getCookie() && (
+        <ModalWithButton toggleModal={toggleModal} todayClose={todayClose} visible={modal} />
       )}
       <ListContainer></ListContainer>
     </PageTemplate>

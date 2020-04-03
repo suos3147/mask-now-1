@@ -2,10 +2,23 @@
 import { jsx, css } from '@emotion/core'
 import Modal from '.'
 import { Button } from '../index'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
-const ModalWithButton = ({ toggleModal, todayClose }) => {
+const ModalWithButton = ({ toggleModal, todayClose, visible }) => {
+  const [animate, setAnimate] = useState(true)
+  const [localVisible, setLocalVisible] = useState(visible)
+
+  useEffect(() => {
+    if (localVisible && !visible) {
+      setTimeout(() => setAnimate(false), 250)
+      setLocalVisible(visible)
+    }
+  }, [localVisible, visible])
+
+  if (!animate && !localVisible) return null
   return (
-    <Modal size="long">
+    <Modal size="long" disappear={!visible}>
       <div css={container}>
         <div>
           <h2>
