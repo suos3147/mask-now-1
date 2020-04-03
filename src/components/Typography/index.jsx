@@ -9,10 +9,15 @@ const Typography = ({
   size = 'normal',
   color = 'default',
   tag,
+  className,
 }) => {
   const defaultTag = setDefaultTag({ variation, decoration })
   const Tag = tag || defaultTag
-  return <Tag css={setStyle({ variation, decoration, size, color })}>{children}</Tag>
+  return (
+    <Tag css={setStyle({ variation, decoration, size, color })} className={className}>
+      {children}
+    </Tag>
+  )
 }
 
 const setDefaultTag = ({ variation, decoration }) => {
@@ -67,7 +72,7 @@ const setStyle = ({ variation, decoration, size, color }) => {
       display: block;
       padding: 1rem 1.2rem;
       border-radius: 0.2rem;
-      background: #f4f1ef;
+      background: FloralWhite;
     `,
   }
 

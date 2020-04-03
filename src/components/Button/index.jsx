@@ -28,6 +28,7 @@ const setStyle = ({ variation, size, color, width }) => {
 
   const defaultStyle = css`
     display: flex;
+    justify-content: center;
     align-items: center;
     border: 1px solid ${COLOR};
     border-radius: 0.2rem;
@@ -51,6 +52,10 @@ const setStyle = ({ variation, size, color, width }) => {
     outline: css`
       color: ${COLOR};
       background: none;
+      &:active {
+        background: ${COLOR};
+        color: #fff;
+      }
     `,
     flat: css`
       border: none;
