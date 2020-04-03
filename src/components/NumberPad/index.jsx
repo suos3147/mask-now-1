@@ -30,8 +30,8 @@ const style = css`
   width: 80vw;
   height: calc((80vw / 5) * 2);
   @media screen and (min-width: 1040px) {
-    grid-template: repeat(1, 1fr) / repeat(10, 1fr);
-    max-height: 220px;
+    grid-template-columns: repeat(10, 1fr);
+    max-height: 300px;
     margin-top: 10%;
   }
 `

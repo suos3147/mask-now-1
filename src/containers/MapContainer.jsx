@@ -187,7 +187,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
           textAlign: 'center',
           borderRadius: '10rem',
           color: '#fff',
-          background: COLORS.primary,
+          background: COLORS.secondary,
         }}
       >
         1km 내에 {mask && mask.length}개의 약국이 있습니다.
