@@ -8,9 +8,11 @@ const PageTemplate = ({ children, info }) => {
     <Fragment>
       <Header />
       <main css={mainStyle}>
-        <Typography variation="callout" color="secondary" className="info">
-          {info}
-        </Typography>
+        {info && (
+          <Typography variation="callout" color="secondary" className="info">
+            {info}
+          </Typography>
+        )}
         {children}
       </main>
       <Footer color="primary" />
@@ -26,6 +28,7 @@ const mainStyle = css`
   height: 100vh;
   background: #fff;
   z-index: 1;
+
   .info {
     margin: 2rem auto;
     width: 80vw;

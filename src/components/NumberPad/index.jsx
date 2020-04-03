@@ -2,14 +2,14 @@
 import { css, jsx } from '@emotion/core'
 import { Button } from '..'
 
-const NumberPad = () => {
+const NumberPad = ({ popupModal }) => {
   const numbers = Array(10)
     .fill()
     .map((_, index) => index)
   return (
     <div css={style}>
       {numbers.map(number => (
-        <Button key={number} variation="outline" size="medium">
+        <Button key={number} variation="outline" size="medium" onClick={() => popupModal(number)}>
           {number}
         </Button>
       ))}

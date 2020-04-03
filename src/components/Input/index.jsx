@@ -7,6 +7,7 @@ const Input = ({ onChange, placeholder }) => {
 
 const style = css`
   width: 30%;
+  height: 40px;
   margin-right: 6px;
   font-size: 14px;
   border-style: none;
