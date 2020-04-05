@@ -48,20 +48,23 @@ const setStyle = status => {
     some: '#e6b800',
     few: '#990000',
     empty: '#4d4d4d',
-    break: '#000000',
+    break: 'grey',
   }
   const style = css`
     background: ${COLORS[status]};
     height: 20rem;
     padding: 1rem;
     box-shadow: 0.1rem 0.1rem 0.1rem 0.1rem #d9d9d9;
-    opacity: ${status === 'break' ? 0.3 : 1};
     p {
       display: flex;
       flex-direction: column;
       padding: 0.5rem;
       word-break: keep-all;
-      color: ${['plenty', 'few'].includes(status) ? '#fff' : 'inherit'};
+      color: ${['plenty', 'few'].includes(status)
+        ? '#fff'
+        : status === 'break'
+        ? 'grey'
+        : 'inherit'};
       font-size: 1.1rem;
       &:nth-of-type(1) {
         display: flex;
@@ -83,7 +86,7 @@ const setStyle = status => {
         text-align: right;
         font-size: 1.2rem;
         border-radius: 25px;
-        background-color: white;
+        background-color: ${status === 'break' ? 'none' : 'white'};
         color: ${tag[status]};
       }
     }
