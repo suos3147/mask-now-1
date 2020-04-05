@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { fetchMask, usePromise, useCurrentLocation } from '../library'
 import { List, Loader } from '../components'
-import LocationContext from '../store/LocationContext'
 
 const ListContainer = () => {
   let { latitude, longitude } = useCurrentLocation()
+
   const [loading, response, error] = usePromise(() => {
     if (latitude || longitude)
       return fetchMask({
         method: 'GET',
-        url: `/storesByGeo/json?lat=${latitude}&lon=${longitude}`,
+        url: `/storesByGeo/json?lat=${latitude}&lng=${longitude}`, // log이 아니라 lng임 오타나서 그런거
       })
   }, [latitude, longitude])
 
