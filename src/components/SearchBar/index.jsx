@@ -2,10 +2,10 @@
 import { jsx, css } from '@emotion/core'
 import { Input, Button, Icon } from '../index'
 
-const SearchBar = ({ placeholder, onChange, onClick, onEnter, style }) => {
+const SearchBar = ({ placeholder, onChange, onClick, onEnter, style, inputRef }) => {
   return (
     <div css={defaultStyle} style={style}>
-      <Input placeholder={placeholder} onChange={onChange} onEnter={onEnter} />
+      <Input placeholder={placeholder} onChange={onChange} onEnter={onEnter} inputRef={inputRef} />
       <Button onClick={onClick} variation="flat">
         <Icon shape="search" />
       </Button>

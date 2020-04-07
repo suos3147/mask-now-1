@@ -10,6 +10,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
   const [mask, setMask] = useState([])
 
   let search = useRef('')
+  let inputRef = useRef()
   const positions = useRef([])
 
   const { kakao } = window
@@ -109,8 +110,10 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
     }
 
     setLoading(true)
+    inputRef.current.value = '검색중...'
     const response = await fetchMask({ method: 'GET', url: `/storesByAddr/json?address=${input}` })
     setLoading(false)
+    inputRef.current.value = ''
 
     // 약국 정보 추출
     const {
@@ -119,7 +122,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
 
     if (stores.length === 0) {
       alert('검색 결과가 없습니다.')
-      return window.history.go(0)
+      return getMask()
     }
 
     setMask(mask => [...stores])
@@ -185,7 +188,8 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
         onEnter={onEnter}
         onClick={doSearch}
         onChange={getInputValue}
-        placeholder="구/동 단위로 검색"
+        placeholder="도/시/구/동 단위로 검색"
+        inputRef={inputRef}
       />
       <p
         style={{
