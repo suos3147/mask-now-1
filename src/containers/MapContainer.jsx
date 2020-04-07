@@ -110,10 +110,11 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
     }
 
     setLoading(true)
-    inputRef.current.value = '검색중...'
+    inputRef.current.value = ''
+    inputRef.current.placeholder = '검색중...🧐'
     const response = await fetchMask({ method: 'GET', url: `/storesByAddr/json?address=${input}` })
     setLoading(false)
-    inputRef.current.value = ''
+    inputRef.current.placeholder = '도/시/구/동 단위로 검색'
 
     // 약국 정보 추출
     const {

@@ -16,9 +16,9 @@ const SearchBar = ({ placeholder, onChange, onClick, onEnter, style, inputRef })
 const defaultStyle = css`
   display: flex;
   align-content: center;
-  padding: 0.5rem 0;
+  padding: 0.1rem 0.3rem;
+  margin-bottom: 3px;
   height: 45px;
-  padding: 0 10px;
   input {
     flex: 1;
   }
