@@ -92,6 +92,14 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
     ],
   )
 
+  // Enter 입력시 검색 수행 함수
+  const onEnter = () => {
+    if (window.event.keyCode === 13) {
+      doSearch()
+    }
+  }
+
+  // input 값으로 검색시 사용하는 함수
   const doSearch = async () => {
     const input = search.current.trim()
     if (input === '') {
@@ -174,7 +182,12 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
 
   return (
     <div>
-      <SearchBar onClick={doSearch} onChange={getInputValue} placeholder="구/동 단위로 검색" />
+      <SearchBar
+        onEnter={onEnter}
+        onClick={doSearch}
+        onChange={getInputValue}
+        placeholder="구/동 단위로 검색"
+      />
       <p
         style={{
           position: 'absolute',
