@@ -12,8 +12,6 @@ export { default as Overlay } from './Overlay'
 export { default as SearchBar } from './SearchBar'
 export { default as Loader } from './Loader'
 export { default as Modal } from './Modal'
-export { default as ModalWithButton } from './Modal/ModalWithButton'
-export { default as ModalWithDay } from './Modal/ModalWithDay'
 
 export { default as List } from './List'
 export { default as Item } from './Item'
