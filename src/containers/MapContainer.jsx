@@ -108,6 +108,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
       return alert('구/동 단위로 입력해 주세요!')
     }
 
+    setLoading(true)
     const response = await fetchMask({ method: 'GET', url: `/storesByAddr/json?address=${input}` })
     setLoading(false)
 

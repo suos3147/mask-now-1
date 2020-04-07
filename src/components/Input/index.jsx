@@ -17,7 +17,7 @@ const style = css`
   width: 30%;
   height: 40px;
   margin-right: 6px;
-  font-size: 14px;
+  font-size: 16px;
   border-style: none;
   outline: none;
   border-bottom: 2px solid #bcbcbc;
