@@ -5,7 +5,7 @@ import COLORS from '../../assets/colors'
 const ColorInfo = () => {
   return (
     <div css={container}>
-      <h5>색상별 마스크 재고 개수</h5>
+      <span>색상별 마스크 재고</span>
       <div>
         <div></div>
         <span>&nbsp; 100개 이상</span>
@@ -31,38 +31,37 @@ const ColorInfo = () => {
 }
 
 const container = css`
-  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 129px;
-  left: 4px;
-  width: 20%;
-  height: 34%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 13%;
+  height: 25%;
   min-width: 140px;
-  min-height: 230px;
-  max-width: 250px;
+  min-height: 150px;
   background: #fdfdfd;
   border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24), 0 1px 2px rgba(0, 0, 0, 0.3);
+  z-index: 5;
   animation-name: fromLeft;
-  animation-duration: 1.5s;
-  & > h5 {
+  animation-duration: 1s;
+  & > span {
     padding: 0px 2px;
+    margin-bottom: 1px;
     text-align: center;
     color: #655656;
-    font-size: 19px;
-    word-break: keep-all;
-    word-wrap: break-word;
+    font-size: 15px;
+    font-weight: 600;
   }
   & > div {
-    margin-top: 3%;
+    margin-top: 2%;
     display: flex;
-    width: 92%;
-    height: 14%;
-    padding: 4px 0px 4px 4px;
+    width: 88%;
+    height: 13.5%;
+    padding: 0px 0px 0px 5px;
     justify-content: flex-start;
     align-items: center;
     background: #fff;
@@ -71,13 +70,15 @@ const container = css`
   }
 
   & > div > span {
-    font-size: 16px;
+    font-size: 14px;
+    padding-bottom: 1px;
   }
 
   & > div > div {
-    width: 18px;
-    height: 18px;
-    border-radius: 100%;
+    margin: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 40%;
   }
 
   & > div:nth-of-type(1) > div {
@@ -116,33 +117,6 @@ const container = css`
       }
       to {
         margin-left: 0;
-      }
-    }
-  }
-  @media screen and (max-width: 1000px) {
-    min-width: 155px;
-    h5 {
-      font-size: 15px;
-    }
-  }
-  @media screen and (max-width: 500px) {
-    min-width: 133px;
-    min-height: 150px;
-    height: 150px;
-    h5 {
-      font-size: 12px;
-    }
-    div {
-      width: 90%;
-      height: 14%;
-      margin: 0 0 3px 5px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      div {
-        width: 12px;
-        height: 12px;
-      }
-      span {
-        font-size: 11px;
       }
     }
   }

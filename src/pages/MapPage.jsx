@@ -8,7 +8,6 @@ const MapPage = () => {
   const mapRef = useRef()
   return (
     <PageTemplate>
-      <ColorInfo />
       <MapContainer loading={loading} setLoading={setLoading} mapRef={mapRef} />
       {loading && <Loader />}
       {!loading && (
@@ -16,10 +15,13 @@ const MapPage = () => {
           ref={mapRef}
           style={{
             flex: 1,
-            marginLeft: '-0.5rem',
-            width: '99vw',
+            margin: '0 auto',
+            width: '97vw',
+            position: 'relative',
           }}
-        ></div>
+        >
+          <ColorInfo />
+        </div>
       )}
     </PageTemplate>
   )

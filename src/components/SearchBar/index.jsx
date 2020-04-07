@@ -18,7 +18,6 @@ const defaultStyle = css`
   align-content: center;
   padding: 0.5rem 0;
   height: 45px;
-  margin-bottom: 15px;
   padding: 0 10px;
   input {
     flex: 1;

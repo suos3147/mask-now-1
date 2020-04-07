@@ -12,7 +12,7 @@ const Footer = ({ color }) => {
     const shadowEvent = () => {
       if (
         documentElement.scrollHeight ===
-        documentElement.clientHeight + documentElement.scrollTop
+        documentElement.clientHeight + Math.round(documentElement.scrollTop)
       ) {
         setShadow(true)
       } else {
@@ -43,9 +43,9 @@ const Footer = ({ color }) => {
 const boxShadow = css`
   width: 100%;
   height: 3px;
-  bottom: 51px;
+  bottom: 50px;
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   box-shadow: 0px -2px 2px 0px rgba(0, 0, 0, 0.32), 0px -3px 4px 1px rgba(30, 144, 255, 0.45);
   transition: 0.2s ease-out;
 `
@@ -56,6 +56,7 @@ const setStyle = color => {
     bottom: 0;
     left: 0;
     width: 100%;
+    height: 53px;
     background: ${COLORS[color]};
     padding: 15px;
     text-align: center;
