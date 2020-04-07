@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import Modal from '.'
-import { Button } from '../index'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { Modal, Button } from '../components'
+import { useState, useEffect } from 'react'
 
 const ModalWithButton = ({ toggleModal, todayClose, visible }) => {
   const [animate, setAnimate] = useState(true)

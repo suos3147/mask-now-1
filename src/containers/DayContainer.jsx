@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { NumberPad, ModalWithDay } from '../components'
+import { NumberPad } from '../components'
+import { ModalWithDay } from '.'
 
 const DayContainer = () => {
   const [modal, setModal] = useState(false)

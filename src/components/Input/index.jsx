@@ -1,15 +1,23 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-const Input = ({ onChange, placeholder }) => {
-  return <input css={style} type="text" onChange={onChange} placeholder={placeholder} />
+const Input = ({ onChange, onEnter, placeholder }) => {
+  return (
+    <input
+      css={style}
+      type="text"
+      onChange={onChange}
+      onKeyUp={onEnter}
+      placeholder={placeholder}
+    />
+  )
 }
 
 const style = css`
   width: 30%;
   height: 40px;
   margin-right: 6px;
-  font-size: 14px;
+  font-size: 16px;
   border-style: none;
   outline: none;
   border-bottom: 2px solid #bcbcbc;

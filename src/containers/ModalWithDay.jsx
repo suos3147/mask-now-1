@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import Modal from './index'
-import Button from '../Button'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { Modal, Button } from '../components'
+import { useState, useEffect } from 'react'
 
 const ModalWithDay = ({ size, closeModal, children, days, day, visible }) => {
   const [animate, setAnimate] = useState(false)
