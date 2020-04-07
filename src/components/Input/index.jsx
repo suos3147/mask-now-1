@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 
-const Input = ({ onChange, onEnter, placeholder }) => {
+const Input = ({ onChange, onEnter, placeholder, inputRef }) => {
   return (
     <input
       css={style}
@@ -9,6 +9,7 @@ const Input = ({ onChange, onEnter, placeholder }) => {
       onChange={onChange}
       onKeyUp={onEnter}
       placeholder={placeholder}
+      ref={inputRef}
     />
   )
 }
