@@ -108,7 +108,6 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
       return alert('구/동 단위로 입력해 주세요!')
     }
 
-    setLoading(true)
     const response = await fetchMask({ method: 'GET', url: `/storesByAddr/json?address=${input}` })
     setLoading(false)
 
@@ -149,7 +148,6 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
   }
 
   const getMask = useCallback(async () => {
-    setLoading(true)
     const response = await fetchMask({
       method: 'GET',
       url: `/storesByGeo/json?lat=${location.latitude}&lng=${location.longitude}&m=1000`,

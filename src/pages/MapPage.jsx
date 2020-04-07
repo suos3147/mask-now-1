@@ -4,7 +4,7 @@ import { PageTemplate, Loader, ColorInfo } from '../components'
 import { MapContainer } from '../containers'
 
 const MapPage = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const mapRef = useRef()
   return (
     <PageTemplate>
