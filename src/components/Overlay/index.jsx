@@ -9,13 +9,13 @@ const Overlay = ({ name = '약국 이름', addr = '약국 주소', remainStat })
       status = '100매 이상'
       break
     case 'some':
-      status = '30 ~ 100매'
+      status = '30 ~ 99매'
       break
     case 'few':
-      status = '2 ~ 30개'
+      status = '2 ~ 29매'
       break
     case 'empty':
-      status = '1개 이하'
+      status = '0 ~ 1매'
       break
     case 'break':
       status = '판매 중지'
