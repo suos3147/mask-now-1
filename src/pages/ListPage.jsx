@@ -14,12 +14,14 @@ const ListPage = () => {
     createCookie()
   }
   return (
-    <PageTemplate>
+    <>
       {!getCookie() && (
         <ModalWithButton toggleModal={toggleModal} todayClose={todayClose} visible={modal} />
       )}
-      <ListContainer></ListContainer>
-    </PageTemplate>
+      <PageTemplate>
+        <ListContainer></ListContainer>
+      </PageTemplate>
+    </>
   )
 }
 
