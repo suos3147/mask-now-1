@@ -48,6 +48,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
       // 마커 설정
       positions.current.forEach(position => {
         // 마커 이미지 관련 변수
+        console.log(position.remainStat)
         const imageSrc = IMAGES[position.remainStat],
           imageSize = new kakao.maps.Size(53, 43),
           imageOption = { offset: new kakao.maps.Point(27, 69) }
@@ -128,13 +129,23 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
 
     setMask(mask => [...stores])
 
-    positions.current = stores.map(store => ({
-      content: renderToString(
-        <Overlay name={store.name} addr={store.addr} remain_stat={store.remain_stat} />,
-      ),
-      latlng: new kakao.maps.LatLng(store.lat, store.lng),
-      remainStat: store.remain_stat,
-    }))
+    positions.current = stores.map(store => {
+      let remainStat = ''
+
+      if (store.remain_stat) {
+        remainStat = store.remain_stat
+      } else {
+        remainStat = 'noStat'
+      }
+
+      return {
+        content: renderToString(
+          <Overlay name={store.name} addr={store.addr} remainStat={store.remain_stat} />,
+        ),
+        latlng: new kakao.maps.LatLng(store.lat, store.lng),
+        remainStat,
+      }
+    })
 
     const firstData = stores[0]
 
@@ -167,13 +178,23 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
     if (stores) {
       setMask(mask => [...stores])
 
-      positions.current = stores.map(store => ({
-        content: renderToString(
-          <Overlay name={store.name} addr={store.addr} remain_stat={store.remain_stat} />,
-        ),
-        latlng: new kakao.maps.LatLng(store.lat, store.lng),
-        remainStat: store.remain_stat,
-      }))
+      positions.current = stores.map(store => {
+        let remainStat = ''
+
+        if (store.remain_stat) {
+          remainStat = store.remain_stat
+        } else {
+          remainStat = 'noStat'
+        }
+
+        return {
+          content: renderToString(
+            <Overlay name={store.name} addr={store.addr} remainStat={store.remain_stat} />,
+          ),
+          latlng: new kakao.maps.LatLng(store.lat, store.lng),
+          remainStat,
+        }
+      })
 
       setMarker(location)
     }

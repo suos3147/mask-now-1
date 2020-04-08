@@ -4,6 +4,7 @@ const IMAGES = {
   few: require('./few.png'),
   empty: require('./empty.png'),
   break: require('./break.png'),
+  noStat: require('./break.png'),
 }
 
 export default IMAGES
