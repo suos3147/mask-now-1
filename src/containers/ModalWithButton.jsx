@@ -1,17 +1,34 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import Modal from '.'
+import { Modal, Button } from '../components'
+import { useState, useEffect } from 'react'
 
-const ModalWithButton = ({ onClick }) => {
+const ModalWithButton = ({ toggleModal, todayClose, visible }) => {
+  const [animate, setAnimate] = useState(true)
+  const [localVisible, setLocalVisible] = useState(visible)
+
+  useEffect(() => {
+    if (localVisible && !visible) {
+      setTimeout(() => setAnimate(false), 250)
+      setLocalVisible(visible)
+    }
+  }, [localVisible, visible])
+
+  if (!animate && !localVisible) return null
   return (
-    <Modal>
+    <Modal size="long" disappear={!visible}>
       <div css={container}>
-        <h2>
-          <span role="img" aria-label="emoji">
-            👏
-          </span>
-          공지사항
-        </h2>
+        <div>
+          <h2>
+            <span role="img" aria-label="emoji">
+              👏
+            </span>
+            공지사항
+          </h2>
+          <Button variation="outline" onClick={toggleModal} color="default">
+            X
+          </Button>
+        </div>
         <p>
           <span role="img" aria-label="emoji">
             📇
@@ -32,7 +49,7 @@ const ModalWithButton = ({ onClick }) => {
           공적 마스크는 1인당 2매까지 구매 가능하며 하나당 가격은 1,500원입니다.
         </p>
         <div css={buttonContainer}>
-          <span onClick={onClick}>오늘 그만 보기</span>
+          <span onClick={todayClose}>오늘 그만 보기</span>
         </div>
       </div>
     </Modal>
@@ -49,24 +66,29 @@ const container = () => css`
   justify-content: space-between;
   align-items: center;
 
-  & > p {
-    margin: 14px;
-    font-size: 19px;
+  & > div:first-of-type {
+    margin-bottom: 10px;
+    padding: 0;
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
-  & > p > span {
-    margin-right: 5px;
+  & > p {
+    width: 92%;
+    margin: 14px 0px;
+    line-height: 25px;
+    font-size: 19px;
   }
 `
 
 const buttonContainer = () => css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  margin-top: 20px;
+  text-align: center;
   & > span {
     margin: 0;
-    margin-right: 5px;
     border-bottom: 2px solid #bcbcbc;
     color: black;
     font-size: 18px;
