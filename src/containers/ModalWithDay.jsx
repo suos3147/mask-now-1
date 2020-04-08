@@ -37,13 +37,7 @@ const ModalWithDay = ({ size, closeModal, children, days, day, visible }) => {
   )
 }
 
-const dayColors = {
-  1: '#95afc0',
-  2: '#eb4d4b',
-  3: '#22a6b3',
-  4: '#6ab04c',
-  0: '#f6e58d',
-}
+const dayColors = ['#f6e58d', '#95afc0', '#eb4d4b', '#22a6b3', '#6ab04c']
 
 const colorStyle = day => css`
   color: ${dayColors[day]};
