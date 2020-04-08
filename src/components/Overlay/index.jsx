@@ -2,21 +2,31 @@
 import { jsx, css } from '@emotion/core'
 import COLORS from '../../assets/colors'
 
-const Overlay = ({ name = '약국 이름', addr = '약국 주소', remain_stat: remainStat }) => {
+const Overlay = ({ name = '약국 이름', addr = '약국 주소', remainStat }) => {
+  let status = ''
+  switch (remainStat) {
+    case 'plenty':
+      status = '100매 이상'
+      break
+    case 'some':
+      status = '30 ~ 99매'
+      break
+    case 'few':
+      status = '2 ~ 29매'
+      break
+    case 'empty':
+      status = '0 ~ 1매'
+      break
+    case 'break':
+      status = '판매 중지'
+      break
+    default:
+      status = '정보 없음'
+  }
   return (
     <article css={articleStyle}>
       <div css={nameStyle}>{name}</div>
-      <div css={[remainStyle[remainStat], stackStyle]}>
-        {remainStat === 'plenty'
-          ? '100개 이상'
-          : remainStat === 'some'
-          ? '30~100개'
-          : remainStat === 'few'
-          ? '2~30개'
-          : remainStat === 'empty'
-          ? '1개 이하'
-          : '판매 중지'}
-      </div>
+      <div css={[remainStyle[remainStat], stackStyle]}>{status}</div>
       <div css={addrStyle}>
         <p>{addr}</p>
       </div>
