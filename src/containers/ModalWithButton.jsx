@@ -3,7 +3,7 @@ import { jsx, css } from '@emotion/core'
 import { Modal, Button } from '../components'
 import { useState, useEffect } from 'react'
 
-const ModalWithButton = ({ toggleModal, todayClose, visible }) => {
+const ModalWithButton = ({ closeModal, todayClose, visible }) => {
   const [animate, setAnimate] = useState(true)
   const [localVisible, setLocalVisible] = useState(visible)
 
@@ -25,7 +25,7 @@ const ModalWithButton = ({ toggleModal, todayClose, visible }) => {
             </span>
             공지사항
           </h2>
-          <Button variation="outline" onClick={toggleModal} color="default">
+          <Button variation="outline" onClick={closeModal} color="default">
             X
           </Button>
         </div>

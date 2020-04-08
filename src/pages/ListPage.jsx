@@ -6,7 +6,7 @@ import { ListContainer, ModalWithButton } from '../containers'
 const ListPage = () => {
   const [modal, setModal] = useState(true)
 
-  const toggleModal = () => {
+  const closeModal = () => {
     setModal(modal => !modal)
   }
   const todayClose = () => {
@@ -16,7 +16,7 @@ const ListPage = () => {
   return (
     <>
       {!getCookie() && (
-        <ModalWithButton toggleModal={toggleModal} todayClose={todayClose} visible={modal} />
+        <ModalWithButton closeModal={closeModal} todayClose={todayClose} visible={modal} />
       )}
       <PageTemplate>
         <ListContainer></ListContainer>
