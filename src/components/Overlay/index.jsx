@@ -44,7 +44,8 @@ const articleStyle = css`
   margin: 0px 0px 195px 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: 1px 1px 2px 1px #cbcbcb;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
   animation: bounce 0.5s infinite alternate;
   @keyframes bounce {
     from {
