@@ -7,16 +7,16 @@ const ColorInfo = () => {
     <div css={container}>
       <span>색상별 마스크 재고</span>
       <div>
-        <span>&nbsp; 100개 이상</span>
+        <span>&nbsp; 100매 이상</span>
       </div>
       <div>
-        <span>&nbsp; 30~100개</span>
+        <span>&nbsp; 30 ~ 99매</span>
       </div>
       <div>
-        <span>&nbsp; 2~30개</span>
+        <span>&nbsp; 2 ~ 29매</span>
       </div>
       <div>
-        <span>&nbsp; 1개 이하</span>
+        <span>&nbsp; 0 ~ 1매</span>
       </div>
       <div>
         <span>&nbsp; 판매 중지</span>
