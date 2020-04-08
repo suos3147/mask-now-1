@@ -50,7 +50,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
         // 마커 이미지 관련 변수
         console.log(position.remainStat)
         const imageSrc = IMAGES[position.remainStat],
-          imageSize = new kakao.maps.Size(48, 40),
+          imageSize = new kakao.maps.Size(47, 40),
           imageOption = { offset: new kakao.maps.Point(27, 69) }
 
         const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption)
