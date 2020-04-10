@@ -23,6 +23,7 @@ const PageTemplate = ({ children, info }) => {
 const mainStyle = css`
   position: relative;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   padding: 4rem 0.5rem 0;
   height: 100vh;
