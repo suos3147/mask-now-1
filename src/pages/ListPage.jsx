@@ -7,7 +7,6 @@ const ListPage = () => {
   const [modal, setModal] = useState(true)
   const [coords, setCoords] = useState(null)
   const closeModal = () => {
-  const toggleModal = () => {
     setModal(modal => !modal)
   }
   const todayClose = () => {
@@ -15,12 +14,6 @@ const ListPage = () => {
     createCookie()
   }
   return (
-    <>
-      
-      <PageTemplate>
-        <ListContainer></ListContainer>
-      </PageTemplate>
-    </>
     <PageTemplate>
       {!getCookie() && (
         <ModalWithButton closeModal={closeModal} todayClose={todayClose} visible={modal} />
