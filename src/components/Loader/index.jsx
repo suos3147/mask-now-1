@@ -12,7 +12,7 @@ const Loader = ({ borderColor = 'primary', fontColor = 'primary' }) => {
 }
 
 const style = (borderColor, fontColor) => css`
-  margin: 250px auto;
+  margin: auto;
   &,
   div {
     position: relative;
