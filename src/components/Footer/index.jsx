@@ -2,28 +2,24 @@
 import { Fragment } from 'react'
 import { jsx, css } from '@emotion/core'
 import COLORS from '../../assets/colors'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 const Footer = ({ color }) => {
   const [shadow, setShadow] = useState(false)
   const { documentElement } = document
 
-  useEffect(() => {
-    const shadowEvent = () => {
-      if (
-        documentElement.scrollHeight ===
-        documentElement.clientHeight + Math.round(documentElement.scrollTop)
-      ) {
-        setShadow(true)
-      } else {
-        setShadow(false)
-      }
-    }
-    window.addEventListener('scroll', shadowEvent)
-    return () => {
-      window.removeEventListener('scroll', shadowEvent)
+  const shadowEvent = useCallback(() => {
+    if (documentElement.scrollHeight === documentElement.clientHeight + documentElement.scrollTop) {
+      setShadow(true)
+    } else {
+      setShadow(false)
     }
   }, [documentElement.clientHeight, documentElement.scrollHeight, documentElement.scrollTop])
+
+  useEffect(() => {
+    window.addEventListener('scroll', shadowEvent)
+    return () => window.removeEventListener('scroll', shadowEvent)
+  }, [shadowEvent])
 
   return (
     <Fragment>
@@ -47,7 +43,7 @@ const boxShadow = css`
   position: absolute;
   z-index: 10;
   box-shadow: 0px -2px 2px 0px rgba(0, 0, 0, 0.32), 0px -3px 4px 1px rgba(30, 144, 255, 0.45);
-  transition: 0.2s ease-out;
+  transition: 0.1s ease-out;
 `
 
 const setStyle = color => {

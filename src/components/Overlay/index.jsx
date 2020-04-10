@@ -59,8 +59,8 @@ const articleStyle = css`
 
 const nameStyle = css`
   padding-bottom: 2px;
-  border-bottom: 1px solid ${COLORS['primary']};
-  color: ${COLORS['primary']};
+  border-bottom: 1px solid ${COLORS.primary};
+  color: ${COLORS.primary};
   font-size: 15px;
 `
 
@@ -71,16 +71,16 @@ const stackStyle = css`
 
 const remainStyle = {
   plenty: css`
-    color: ${COLORS['plenty']};
+    color: ${COLORS.plenty};
   `,
   some: css`
-    color: ${COLORS['some']};
+    color: ${COLORS.some};
   `,
   few: css`
-    color: ${COLORS['few']};
+    color: ${COLORS.few};
   `,
   empty: css`
-    color: ${COLORS['empty']};
+    color: ${COLORS.empty};
   `,
   break: css`
     color: black;

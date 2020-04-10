@@ -7,23 +7,18 @@ const ColorInfo = () => {
     <div css={container}>
       <span>색상별 마스크 재고</span>
       <div>
-        <div></div>
-        <span>&nbsp; 100개 이상</span>
+        <span>&nbsp; 100매 이상</span>
       </div>
       <div>
-        <div></div>
-        <span>&nbsp; 30~100개</span>
+        <span>&nbsp; 30 ~ 99매</span>
       </div>
       <div>
-        <div></div>
-        <span>&nbsp; 2~30개</span>
+        <span>&nbsp; 2 ~ 29매</span>
       </div>
       <div>
-        <div></div>
-        <span>&nbsp; 1개 이하</span>
+        <span>&nbsp; 0 ~ 1매</span>
       </div>
       <div>
-        <div></div>
         <span>&nbsp; 판매 중지</span>
       </div>
     </div>
@@ -74,42 +69,31 @@ const container = css`
     padding-bottom: 1px;
   }
 
-  & > div > div {
-    margin: 0;
-    width: 14px;
-    height: 14px;
-    border-radius: 40%;
+  & > div > span::before {
+    content: '●';
+    color: red;
   }
 
-  & > div:nth-of-type(1) > div {
-    background: ${COLORS['plenty']};
-    & + span {
-      color: ${COLORS['plenty']};
-    }
+  & > div:nth-of-type(1) > span,
+  & > div:nth-of-type(1) > span::before {
+    color: ${COLORS.plenty};
   }
-  & > div:nth-of-type(2) > div {
-    background: ${COLORS['some']};
-    & + span {
-      color: ${COLORS['some']};
-    }
+
+  & > div:nth-of-type(2) > span,
+  & > div:nth-of-type(2) > span::before {
+    color: ${COLORS.some};
   }
-  & > div:nth-of-type(3) > div {
-    background: ${COLORS['few']};
-    & + span {
-      color: ${COLORS['few']};
-    }
+  & > div:nth-of-type(3) > span,
+  & > div:nth-of-type(3) > span::before {
+    color: ${COLORS.few};
   }
-  & > div:nth-of-type(4) > div {
-    background: ${COLORS['empty']};
-    & + span {
-      color: ${COLORS['empty']};
-    }
+  & > div:nth-of-type(4) > span,
+  & > div:nth-of-type(4) > span::before {
+    color: ${COLORS.empty};
   }
-  & > div:nth-of-type(5) > div {
-    background: black;
-    & + span {
-      color: black;
-    }
+  & > div:nth-of-type(5) > span,
+  & > div:nth-of-type(5) > span::before {
+    color: #000000;
 
     @keyframes fromLeft {
       from {

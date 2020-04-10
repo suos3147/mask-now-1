@@ -35,7 +35,7 @@ const style = (size, disappear) => css`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+  z-index: 15;
   animation-name: fadeIn;
   animation-duration: 0.4s;
   animation-timing-function: ease-in;

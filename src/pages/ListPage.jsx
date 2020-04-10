@@ -6,6 +6,7 @@ import { ListContainer, SearchContainer, ModalWithButton } from '../containers'
 const ListPage = () => {
   const [modal, setModal] = useState(true)
   const [coords, setCoords] = useState(null)
+  const closeModal = () => {
   const toggleModal = () => {
     setModal(modal => !modal)
   }
@@ -14,8 +15,16 @@ const ListPage = () => {
     createCookie()
   }
   return (
+    <>
+      
+      <PageTemplate>
+        <ListContainer></ListContainer>
+      </PageTemplate>
+    </>
     <PageTemplate>
-      {!getCookie() && modal && <ModalWithButton onClick={toggleModal} />}
+      {!getCookie() && (
+        <ModalWithButton closeModal={closeModal} todayClose={todayClose} visible={modal} />
+      )}
       <SearchContainer getCoords={setCoords} />
       <ListContainer coords={coords} />
     </PageTemplate>
