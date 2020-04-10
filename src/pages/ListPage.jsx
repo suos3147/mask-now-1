@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { PageTemplate } from '../components'
 import { getCookie, createCookie } from '../library'
-import { ListContainer, ModalWithButton } from '../containers'
+import { ListContainer, SearchContainer, ModalWithButton } from '../containers'
 
 const ListPage = () => {
   const [modal, setModal] = useState(true)
-
+  const [coords, setCoords] = useState(null)
   const toggleModal = () => {
     setModal(modal => !modal)
   }
@@ -15,10 +15,9 @@ const ListPage = () => {
   }
   return (
     <PageTemplate>
-      {!getCookie() && (
-        <ModalWithButton toggleModal={toggleModal} todayClose={todayClose} visible={modal} />
-      )}
-      <ListContainer></ListContainer>
+      {!getCookie() && modal && <ModalWithButton onClick={toggleModal} />}
+      <SearchContainer getCoords={setCoords} />
+      <ListContainer coords={coords} />
     </PageTemplate>
   )
 }
