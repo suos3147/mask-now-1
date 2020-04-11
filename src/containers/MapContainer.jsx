@@ -25,7 +25,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
 
   // 지도 마커 생성 함수
   const setMarker = useCallback(
-    ({ latitude, longitude }) => {
+    (latitude, longitude) => {
       //지도를 담을 영역의 DOM 레퍼런스
       const container = mapRef.current
 
@@ -101,106 +101,77 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
   }
 
   // input 값으로 검색시 사용하는 함수
-  const doSearch = async () => {
+  const doSearch = () => {
+    const geocoder = new kakao.maps.services.Geocoder()
+
     const input = search.current.trim()
     if (input === '') {
       return alert('한 글자 이상 입력해 주세요!')
-    } else if (input[input.length - 1] !== '구' && input[input.length - 1] !== '동') {
-      return alert('구/동 단위로 입력해 주세요!')
     }
 
-    setLoading(true)
-    inputRef.current.value = ''
-    inputRef.current.placeholder = '검색중...🧐'
-    const response = await fetchMask({ method: 'GET', url: `/storesByAddr/json?address=${input}` })
-    setLoading(false)
-    inputRef.current.placeholder = '도/시/구/동 단위로 검색'
-
-    // 약국 정보 추출
-    const {
-      data: { stores },
-    } = response
-
-    if (stores.length === 0) {
-      alert('검색 결과가 없습니다.')
-      return getMask()
-    }
-
-    setMask(mask => [...stores])
-
-    positions.current = stores.map(store => {
-      let remainStat = ''
-
-      if (store.remain_stat) {
-        remainStat = store.remain_stat
+    geocoder.addressSearch(input, (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        const { Ga: latitude, Ha: longitude } = new kakao.maps.LatLng(result[0].x, result[0].y)
+        const latlng = { latitude, longitude }
+        changeLocation(latlng)
+        inputRef.current.value = ''
+        inputRef.current.placeholder = '검색중...🧐'
+        getMask(latlng)
       } else {
-        remainStat = 'noStat'
-      }
-
-      return {
-        content: renderToString(
-          <Overlay name={store.name} addr={store.addr} remainStat={store.remain_stat} />,
-        ),
-        latlng: new kakao.maps.LatLng(store.lat, store.lng),
-        remainStat,
+        alert('검색 결과가 없습니다😥')
+        inputRef.current.value = ''
       }
     })
-
-    const firstData = stores[0]
-
-    const newLocation = {
-      latitude: firstData.lat,
-      longitude: firstData.lng,
-    }
-
-    changeLocation(newLocation)
-
-    setMarker(newLocation)
   }
 
   const getInputValue = e => {
     search.current = e.target.value
   }
 
-  const getMask = useCallback(async () => {
-    const response = await fetchMask({
-      method: 'GET',
-      url: `/storesByGeo/json?lat=${location.latitude}&lng=${location.longitude}&m=1000`,
-    })
-    setLoading(false)
-
-    // 약국 정보 추출
-    const {
-      data: { stores },
-    } = response
-
-    if (stores) {
-      setMask(mask => [...stores])
-
-      positions.current = stores.map(store => {
-        let remainStat = ''
-
-        if (store.remain_stat) {
-          remainStat = store.remain_stat
-        } else {
-          remainStat = 'noStat'
-        }
-
-        return {
-          content: renderToString(
-            <Overlay name={store.name} addr={store.addr} remainStat={store.remain_stat} />,
-          ),
-          latlng: new kakao.maps.LatLng(store.lat, store.lng),
-          remainStat,
-        }
+  const getMask = useCallback(
+    async ({ latitude, longitude }) => {
+      setLoading(true)
+      const response = await fetchMask({
+        method: 'GET',
+        url: `/storesByGeo/json?lat=${latitude}&lng=${longitude}&m=1000`,
       })
 
-      setMarker(location)
-    }
-  }, [kakao.maps.LatLng, location, setLoading, setMarker])
+      // 약국 정보 추출
+      const {
+        data: { stores },
+      } = response
+
+      if (stores) {
+        setMask(mask => [...stores])
+
+        positions.current = stores.map(store => {
+          let remainStat = ''
+
+          if (store.remain_stat) {
+            remainStat = store.remain_stat
+          } else {
+            remainStat = 'noStat'
+          }
+
+          return {
+            content: renderToString(
+              <Overlay name={store.name} addr={store.addr} remainStat={store.remain_stat} />,
+            ),
+            latlng: new kakao.maps.LatLng(store.lat, store.lng),
+            remainStat,
+          }
+        })
+
+        setLoading(false)
+        inputRef.current.placeholder = '🚩주소를 입력해 주세요.'
+        setMarker(latitude, longitude)
+      }
+    },
+    [kakao.maps.LatLng, setLoading, setMarker],
+  )
 
   useEffect(() => {
-    if (currentLocation === location) getMask()
+    if (currentLocation === location) getMask(location)
   }, [currentLocation, getMask, location])
 
   return (
@@ -209,7 +180,7 @@ const MapContainer = ({ loading, setLoading, mapRef }) => {
         onEnter={onEnter}
         onClick={doSearch}
         onChange={getInputValue}
-        placeholder="도/시/구/동 단위로 검색"
+        placeholder="🚩주소를 입력해 주세요."
         inputRef={inputRef}
       />
       <p
