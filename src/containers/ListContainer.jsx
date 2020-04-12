@@ -3,7 +3,6 @@ import { fetchMask, usePromise, useCurrentLocation } from '../library'
 import { List, Loader } from '../components'
 
 const ListContainer = ({ coords }) => {
-  console.log({ coords })
   const [{ latitude, longitude }, setLocation] = useState({ latitude: null, longitude: null })
   const currentLocation = useCurrentLocation()
   useEffect(() => {

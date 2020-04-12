@@ -13,7 +13,6 @@ const SearchContainer = ({ getCoords }) => {
     }
   }
   const doSearch = () => {
-    console.log(searchInput.current.value)
     geocoder.addressSearch(searchInput.current.value, (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x)
