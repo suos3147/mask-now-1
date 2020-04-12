@@ -6,8 +6,6 @@
 <img width="863" alt="image" src="https://user-images.githubusercontent.com/50170375/79064232-1ed5c280-7ce2-11ea-81b9-2d84b53e0a71.png">
 <img width="907" alt="image" src="https://user-images.githubusercontent.com/50170375/79064200-d7e7cd00-7ce1-11ea-991b-865c3908d2f2.png">
 
-## 사용 기술
-
 - React
 - Storybook
 - Emotion
