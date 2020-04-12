@@ -7,6 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -37,6 +39,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-named-asset-import": "^0.3.6",
     "babel-preset-react-app": "^9.1.1",
+    "gh-pages": "^2.2.0",
     "prettier": "^1.19.1"
   },
   "eslintConfig": {
