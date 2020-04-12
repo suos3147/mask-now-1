@@ -1,8 +1,7 @@
 {
   "name": "mask-now",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://joabyjoa.github.io/mask-now",
+  "homepage": "https://joabyjoa.github.io/mask-now/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
