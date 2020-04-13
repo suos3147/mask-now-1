@@ -10,6 +10,7 @@ const Footer = ({ color }) => {
   const backAndForthRef = useRef()
 
   useEffect(() => {
+    const backAndForthCurrent = backAndForthRef.current
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0.3) {
@@ -19,9 +20,10 @@ const Footer = ({ color }) => {
         }
       })
     })
-    if (backAndForthRef.current) {
-      observer.observe(backAndForthRef.current)
+    if (backAndForthCurrent) {
+      observer.observe(backAndForthCurrent)
     }
+    return () => observer.unobserve(backAndForthCurrent)
   }, [])
 
   return (
@@ -52,6 +54,7 @@ const boxShadow = css`
     }
     50% {
       right: 0;
+      border-color: rgba(255, 255, 255, 0.9);
     }
     100% {
       right: 90%;
