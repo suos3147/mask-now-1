@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mask-now/static/css/main.760501a0.chunk.css",
-    "main.js": "/mask-now/static/js/main.bee57da9.chunk.js",
-    "main.js.map": "/mask-now/static/js/main.bee57da9.chunk.js.map",
+    "main.js": "/mask-now/static/js/main.128ac19a.chunk.js",
+    "main.js.map": "/mask-now/static/js/main.128ac19a.chunk.js.map",
     "runtime-main.js": "/mask-now/static/js/runtime-main.68e5b0f9.js",
     "runtime-main.js.map": "/mask-now/static/js/runtime-main.68e5b0f9.js.map",
     "static/js/2.dd0f125a.chunk.js": "/mask-now/static/js/2.dd0f125a.chunk.js",
     "static/js/2.dd0f125a.chunk.js.map": "/mask-now/static/js/2.dd0f125a.chunk.js.map",
     "index.html": "/mask-now/index.html",
-    "precache-manifest.e28301ea6e25493df92844a391e42a78.js": "/mask-now/precache-manifest.e28301ea6e25493df92844a391e42a78.js",
+    "precache-manifest.ba2b36d6a5e9b9582eb4e66a7f250c76.js": "/mask-now/precache-manifest.ba2b36d6a5e9b9582eb4e66a7f250c76.js",
     "service-worker.js": "/mask-now/service-worker.js",
     "static/css/main.760501a0.chunk.css.map": "/mask-now/static/css/main.760501a0.chunk.css.map",
     "static/js/2.dd0f125a.chunk.js.LICENSE.txt": "/mask-now/static/js/2.dd0f125a.chunk.js.LICENSE.txt",
@@ -28,6 +28,6 @@
     "static/js/runtime-main.68e5b0f9.js",
     "static/js/2.dd0f125a.chunk.js",
     "static/css/main.760501a0.chunk.css",
-    "static/js/main.bee57da9.chunk.js"
+    "static/js/main.128ac19a.chunk.js"
   ]
 }
